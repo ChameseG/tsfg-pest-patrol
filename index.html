@@ -19,7 +19,7 @@ text-shadow:0 3px 0 #ffffff,0 6px 12px #183c1b22}.hero p{margin:0;color:#606762}
 .controls{display:none}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}.stat{background:linear-gradient(145deg,#ffffff,#edf5eb);border-radius:15px;text-align:center;padding:9px;
 box-shadow:inset 0 1px #fff,0 3px 8px #173a2020;border:1px solid #e4eee1}.stat small{font-size:11px;color:#687068}.stat b{display:block;font-size:24px;margin-top:2px}
 .bar{height:8px;background:#e6ece4;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--g),var(--b));transition:width 1s linear}
-.layout{display:grid;grid-template-columns:1fr 118px;gap:6px;margin-top:8px}.game{text-align:center}.msg{font-weight:900;min-height:27px;padding:7px;color:#315a35;text-shadow:0 1px #fff}
+.layout{display:grid;grid-template-columns:1fr 118px;gap:6px;margin-top:8px}.game{text-align:center}.msg{display:none}
 .board{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;
 background:linear-gradient(145deg,#104b20,#2d7b36 45%,#174f25);
 padding:8px;border-radius:21px;aspect-ratio:6/7;touch-action:none;
@@ -100,13 +100,12 @@ padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 
 <h2>PLAYER</h2><div class="playerNameDisplay" id="playerDisplay">—</div><button class="btn" style="width:100%" onclick="changePlayerName()">CHANGE NAME</button>
 <h2 style="margin-top:17px">MISSIONS</h2>
 <div class="mission"><b>Clear 10 pests</b><span id="m1">0 / 10</span></div><div class="mission"><b>Make a 5+ match</b><span id="m2">0 / 1</span></div><div class="mission"><b>Reach Level 3</b><span id="m3">0 / 3</span></div>
-<div class="reward"><h3>HIGH-SCORE REWARDS</h3><div class="tiny">Discounts are intentionally difficult to unlock so they remain a real reward for strong scores.</div><div class="voucher">5,000+ pts → 5% OFF<br>10,000+ pts → 10% OFF<br>15,000+ pts → 15% OFF<br>20,000+ pts → VIP reward</div></div>
 <p class="tiny">Sounds are generated in-browser. Scores are stored locally on this device and cannot be cleared from inside the game.</p>
 
 </aside></div>
 <div class="bottomNav">
 <button onclick="openLeaders()">▥<br>LEADERBOARD</button>
-<button onclick="daily()">▦<br>DAILY CHALLENGE</button>
+
 <button class="play" onclick="start()">▶<br>PLAY</button>
 <button onclick="how()">?<br>HOW TO PLAY</button>
 <button onclick="alert(prize())">🎁<br>VOUCHERS</button>
@@ -161,9 +160,9 @@ function adjacent(a,b){return Math.abs(a.r-b.r)+Math.abs(a.c-b.c)===1}
 function find(){let s=new Set();for(let r=0;r<N;r++){let st=0;for(let c=1;c<=N;c++){if(c<N&&B[r][c]&&B[r][c]===B[r][st])continue;if(c-st>=3&&B[r][st])for(let x=st;x<c;x++)s.add(r+","+x);st=c}}for(let c=0;c<N;c++){let st=0;for(let r=1;r<=N;r++){if(r<N&&B[r][c]&&B[r][c]===B[st][c])continue;if(r-st>=3&&B[st][c])for(let x=st;x<r;x++)s.add(x+","+c);st=r}}return s}
 function drop(){for(let c=0;c<N;c++){let a=[];for(let r=N-1;r>=0;r--)if(B[r][c])a.push(B[r][c]);for(let r=N-1;r>=0;r--)B[r][c]=a[N-1-r]||rnd()}}
 async function pick(r,c,nr=null,nc=null){if(!running||busy)return;
-  if(nr!==null&&nc!==null){sel=null;let a={r,c},b={r:nr,c:nc};if(!adjacent(a,b))return;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swipe.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old)sound("level");update();busy=false;return;
+  if(nr!==null&&nc!==null){sel=null;let a={r,c},b={r:nr,c:nc};if(!adjacent(a,b))return;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swipe.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old){time+=2*(level-old);sound("level")}update();busy=false;return;
   }
-  if(!sel){sel={r,c};render();return}let a=sel,b={r,c};if(!adjacent(a,b)){sel=b;render();return}sel=null;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swap.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old)sound("level");update();busy=false}
+  if(!sel){sel={r,c};render();return}let a=sel,b={r,c};if(!adjacent(a,b)){sel=b;render();return}sel=null;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swap.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old){time+=2*(level-old);sound("level")}update();busy=false}
 function showScore(points){
  const el=document.createElement("div");el.className="floatScore";el.textContent="+"+points;
  document.body.appendChild(el);el.style.left="50%";el.style.top="44%";setTimeout(()=>el.remove(),800);
