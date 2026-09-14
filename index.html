@@ -22,7 +22,7 @@ box-shadow:inset 0 1px #fff,0 3px 8px #173a2020;border:1px solid #e4eee1}.stat s
 .layout{display:grid;grid-template-columns:1fr 118px;gap:6px;margin-top:8px}.game{text-align:center}.msg{font-weight:900;min-height:27px;padding:7px;color:#315a35;text-shadow:0 1px #fff}
 .board{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;
 background:linear-gradient(145deg,#104b20,#2d7b36 45%,#174f25);
-padding:8px;border-radius:21px;aspect-ratio:6/7;touch-action:manipulation;
+padding:8px;border-radius:21px;aspect-ratio:6/7;touch-action:none;
 box-shadow:inset 0 3px 7px #0007,0 10px 20px #123b181f}.tile{position:relative;border:0;background:
 radial-gradient(circle at 32% 22%,#fff 0 7%,#ffffff88 8% 15%,transparent 16%),
 linear-gradient(145deg,#ffffff,#e8efe8);
@@ -47,6 +47,7 @@ color:#fff;text-shadow:0 2px 4px #0009;animation:floatScore .75s ease-out forwar
 padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 0 1px #fff;transition:.12s}
 .power:active{transform:translateY(2px) scale(.98)}.power:disabled{opacity:.4;cursor:not-allowed}.powerEmoji{display:block;font-size:27px;line-height:29px}.power small{font-weight:normal;color:#677068}
 .side h2{margin:2px 0 6px;font-size:14px;text-align:center;color:#fff;background:linear-gradient(180deg,#0877bd,#064f88);padding:7px;border-radius:10px}.side input{width:100%;padding:7px;font-size:12px;border:2px solid #dce5da;border-radius:10px;font-size:16px;margin-bottom:7px}.side ol{margin:5px 0;padding-left:20px;font-size:11px}.side li{padding:6px 0;border-bottom:1px solid #edf1eb}.mission{background:#f4f8f3;border-radius:10px;padding:8px;margin:6px 0;font-size:12px}.mission b{display:block}.reward{margin-top:10px;padding:11px;border-radius:13px;background:#fff8d9;border:1px solid #efd06b}.reward h3{margin:0 0 4px}.tiny{font-size:11px;color:#687068;line-height:1.4}.voucher{margin-top:7px;background:white;border:2px dashed var(--g);border-radius:11px;padding:9px;font-weight:800}.footer{text-align:center;font-size:10px;color:#69716a;padding:14px}
+.nameStartBox{max-width:400px}.startNameInput{width:100%;box-sizing:border-box;padding:13px 14px;border:2px solid #0b78b8;border-radius:12px;font-size:18px;text-align:center;outline:none}.playerNameDisplay{background:#fff;border-radius:10px;padding:10px;color:#07578f;font-weight:900;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:7px}
 .modal{display:none;position:fixed;inset:0;background:#102013b8;z-index:10;place-items:center;padding:18px}.modal.show{display:grid}.modalbox{background:white;border-radius:22px;max-width:450px;width:100%;padding:24px;text-align:center}.big{font-size:52px;color:var(--g);font-weight:900}.prize{font-size:19px;font-weight:900;color:var(--b);margin:8px 0}
 @media(max-width:800px){.layout{grid-template-columns:1fr}.side{order:2}.badge{display:none}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:450px){.wrap{padding:7px}.card{padding:11px}.stats{grid-template-columns:repeat(2,1fr)}.board{gap:3px;padding:5px}.tile{border-radius:8px}.tile .pestEmoji{font-size:clamp(25px,8vw,43px)}.tile img{max-width:45px;max-height:45px}.powerups{gap:4px}.power{font-size:12px}}
 
@@ -58,7 +59,7 @@ padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 
 .rewardStrip span{display:inline-block;padding:0 7px;border-right:1px solid #ffffff55}.rewardStrip span:last-child{border:0}
 .bottomNav{display:grid;grid-template-columns:1fr 1fr 1.2fr 1fr 1fr;gap:4px;margin-top:6px}.bottomNav button{border:0;border-radius:10px;padding:8px 2px;background:linear-gradient(180deg,#168fce,#075a94);color:#fff;font-size:8px;font-weight:900;box-shadow:inset 0 2px #fff5,0 3px 6px #0003}.bottomNav .play{background:linear-gradient(180deg,#73df45,#24991f);font-size:12px}
 
-.leaderBox{max-width:360px;text-align:center}.leaderNote{margin:-8px 0 10px;color:#667}.leaderNames{margin:0 0 16px;padding-left:28px;text-align:left;max-height:360px;overflow:auto}.leaderNames li{padding:9px 8px;margin:5px 0;border-radius:10px;background:#eef6ff;color:#123b5d;font-weight:900;display:flex;align-items:center;justify-content:space-between;gap:10px}.leaderNames li::marker{color:#0877bd;font-weight:900}.leaderScore{color:#0877bd;font-weight:1000;white-space:nowrap}
+ .claimBox{margin:14px 0 4px;padding:14px;border-radius:16px;background:#f4f9ff;border:2px solid #d9ecff;text-align:left}.claimBox h3{margin:0 0 5px;color:#0877bd;text-align:center}.claimBox p{font-size:13px;margin:0 0 10px;text-align:center;color:#456}.claimBox input{width:100%;box-sizing:border-box;padding:11px 12px;margin:5px 0;border:1px solid #c9d9e8;border-radius:10px;font-size:15px}.claimBox .claimBtn{width:100%;margin-top:7px}.claimStatus{font-size:12px;text-align:center;margin:7px 0 0;color:#2d6a3d;min-height:16px} .leaderBox{max-width:360px;text-align:center}.leaderNote{margin:-8px 0 10px;color:#667}.leaderNames{margin:0 0 16px;padding-left:28px;text-align:left;max-height:360px;overflow:auto}.leaderNames li{padding:9px 8px;margin:5px 0;border-radius:10px;background:#eef6ff;color:#123b5d;font-weight:900;display:flex;align-items:center;justify-content:space-between;gap:10px}.leaderNames li::marker{color:#0877bd;font-weight:900}.leaderScore{color:#0877bd;font-weight:1000;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -86,7 +87,7 @@ padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 
 <div class="stat"><small>SCORE</small><b id="score">0</b></div><div class="stat"><small>LEVEL</small><b id="level">1</b></div><div class="stat"><small>COMBO</small><b id="combo">x1</b></div><div class="stat"><small>TIME</small><b id="time">60</b></div><div class="stat"><small>BEST</small><b id="best">0</b></div>
 </div><div class="bar"><i id="timer"></i></div>
 
-<div class="rewardStrip"><span>🏆 HIGH SCORE REWARDS</span><span>2,500+<br>5% OFF</span><span>3,500+<br>10% OFF</span><span>5,000+<br>15% OFF</span><span>7,500+<br>VIP</span></div>
+<div class="rewardStrip"><span>🏆 HIGH SCORE REWARDS</span><span>4,000+<br>5% OFF</span><span>5,000+<br>10% OFF</span><span>6,500+<br>15% OFF</span><span>8,500+<br>VIP</span></div>
 <div class="layout">
 <main class="card game"><div style="background:linear-gradient(90deg,#42b649,#0877bd);color:#fff;border-radius:14px;padding:8px 12px;margin-bottom:4px;font-weight:900;box-shadow:inset 0 1px #fff5">🪳 CLEAR THE INFESTATION • MATCH 3+</div><div class="msg" id="msg">Enter your name and press START GAME.</div><div class="board" id="board"></div>
 <div class="powerups">
@@ -96,10 +97,10 @@ padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 
 </div></main>
 
 <aside class="card side" style="padding:5px;background:linear-gradient(180deg,#075c91,#043b61)">
-<h2>POWER-UPS</h2><input id="name" maxlength="16" placeholder="Your name"><button class="btn" style="width:100%" onclick="start()">START / RESTART</button>
+<h2>PLAYER</h2><div class="playerNameDisplay" id="playerDisplay">—</div><button class="btn" style="width:100%" onclick="changePlayerName()">CHANGE NAME</button>
 <h2 style="margin-top:17px">MISSIONS</h2>
 <div class="mission"><b>Clear 10 pests</b><span id="m1">0 / 10</span></div><div class="mission"><b>Make a 5+ match</b><span id="m2">0 / 1</span></div><div class="mission"><b>Reach Level 3</b><span id="m3">0 / 3</span></div>
-<div class="reward"><h3>HIGH-SCORE REWARDS</h3><div class="tiny">Discounts are intentionally difficult to unlock so they remain a real reward for strong scores.</div><div class="voucher">2,500+ pts → 5% OFF<br>3,500+ pts → 10% OFF<br>5,000+ pts → 15% OFF<br>7,500+ pts → VIP reward</div></div>
+<div class="reward"><h3>HIGH-SCORE REWARDS</h3><div class="tiny">Discounts are intentionally difficult to unlock so they remain a real reward for strong scores.</div><div class="voucher">4,000+ pts → 5% OFF<br>5,000+ pts → 10% OFF<br>6,500+ pts → 15% OFF<br>8,500+ pts → VIP reward</div></div>
 <p class="tiny">Sounds are generated in-browser. Scores are stored locally on this device and cannot be cleared from inside the game.</p>
 
 </aside></div>
@@ -113,7 +114,10 @@ padding:7px;cursor:pointer;font-weight:900;box-shadow:0 4px 9px #173a2020,inset 
 <div class="footer">The Specialists WR Pest, Clean & JHB Pest</div>
 </div>
 
-<div class="modal" id="modal"><div class="modalbox"><h2 id="result">GAME OVER</h2><div class="big" id="final">0</div><div class="prize" id="prize"></div><p id="resultText"></p><button class="btn" onclick="closeModal();start()">PLAY AGAIN</button></div></div>
+<input id="name" type="hidden" value="">
+<div class="modal show" id="nameModal"><div class="modalbox nameStartBox"><h2>🪳 WELCOME TO PEST PATROL!</h2><p>Enter your name to start playing.</p><input id="startName" class="startNameInput" type="text" maxlength="16" placeholder="Your name" autocomplete="name"><button class="btn" style="width:100%;margin-top:10px" onclick="confirmPlayerName()">START GAME</button><div class="claimStatus" id="nameStartStatus"></div></div></div>
+
+<div class="modal" id="modal"><div class="modalbox"><h2 id="result">GAME OVER</h2><div class="big" id="final">0</div><div class="prize" id="prize"></div><p id="resultText"></p><div class="claimBox" id="claimBox" style="display:none"><h3>🎁 CLAIM YOUR PRIZE</h3><p>Congratulations! Please enter your details so our team can contact you to arrange your prize.</p><input id="claimName" type="text" maxlength="80" placeholder="Full name"><input id="claimPhone" type="tel" maxlength="30" placeholder="Cellphone number"><input id="claimEmail" type="email" maxlength="120" placeholder="Email address (optional)"><button class="btn claimBtn" id="claimBtn" onclick="submitPrizeClaim()">SUBMIT PRIZE CLAIM</button><div class="claimStatus" id="claimStatus"></div></div><button class="btn" onclick="closeModal();start()">PLAY AGAIN</button></div></div>
 <div class="modal" id="leaderModal"><div class="modalbox leaderBox"><h2>🏆 LEADERBOARD</h2><p class="leaderNote">Top players</p><ol id="leaderNames" class="leaderNames"></ol><button class="btn" onclick="closeLeaders()">CLOSE</button></div></div>
 
 <script>
@@ -147,39 +151,59 @@ function sound(type){
 }
 function rnd(){return pests[Math.floor(Math.random()*pests.length)]}
 function make(){B=Array.from({length:N},()=>Array(N).fill(""));for(let r=0;r<N;r++)for(let c=0;c<N;c++){let p;do{p=rnd()}while((c>1&&B[r][c-1]===p&&B[r][c-2]===p)||(r>1&&B[r-1][c]===p&&B[r-2][c]===p));B[r][c]=p}render()}
-function render(){let e=$("board");e.innerHTML="";B.forEach((row,r)=>row.forEach((v,c)=>{let b=document.createElement("button");b.className="tile"+(sel&&sel.r===r&&sel.c===c?" selected":"");b.innerHTML=svg(v);b.onclick=()=>pick(r,c);e.appendChild(b)}))}
+let swipeStart=null, swipeMoved=false;
+function render(){let e=$("board");e.innerHTML="";B.forEach((row,r)=>row.forEach((v,c)=>{let b=document.createElement("button");b.className="tile"+(sel&&sel.r===r&&sel.c===c?" selected":"");b.innerHTML=svg(v);b.dataset.r=r;b.dataset.c=c;
+b.addEventListener("pointerdown",ev=>{if(!running||busy)return;swipeStart={r,c,x:ev.clientX,y:ev.clientY};swipeMoved=false;try{b.setPointerCapture(ev.pointerId)}catch(err){}});
+b.addEventListener("pointermove",ev=>{if(!swipeStart||swipeMoved)return;let dx=ev.clientX-swipeStart.x,dy=ev.clientY-swipeStart.y;if(Math.hypot(dx,dy)<18)return;swipeMoved=true;let nr=swipeStart.r,nc=swipeStart.c;if(Math.abs(dx)>Math.abs(dy))nc+=dx>0?1:-1;else nr+=dy>0?1:-1;if(nr>=0&&nr<N&&nc>=0&&nc<N)pick(swipeStart.r,swipeStart.c,nr,nc);swipeStart=null});
+b.addEventListener("pointerup",ev=>{swipeStart=null});
+b.addEventListener("pointercancel",()=>{swipeStart=null});e.appendChild(b)}))}
 function adjacent(a,b){return Math.abs(a.r-b.r)+Math.abs(a.c-b.c)===1}
 function find(){let s=new Set();for(let r=0;r<N;r++){let st=0;for(let c=1;c<=N;c++){if(c<N&&B[r][c]&&B[r][c]===B[r][st])continue;if(c-st>=3&&B[r][st])for(let x=st;x<c;x++)s.add(r+","+x);st=c}}for(let c=0;c<N;c++){let st=0;for(let r=1;r<=N;r++){if(r<N&&B[r][c]&&B[r][c]===B[st][c])continue;if(r-st>=3&&B[st][c])for(let x=st;x<r;x++)s.add(x+","+c);st=r}}return s}
 function drop(){for(let c=0;c<N;c++){let a=[];for(let r=N-1;r>=0;r--)if(B[r][c])a.push(B[r][c]);for(let r=N-1;r>=0;r--)B[r][c]=a[N-1-r]||rnd()}}
-async function pick(r,c){if(!running||busy)return;if(!sel){sel={r,c};render();return}let a=sel,b={r,c};if(!adjacent(a,b)){sel=b;render();return}sel=null;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swap.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old)sound("level");update();busy=false}
+async function pick(r,c,nr=null,nc=null){if(!running||busy)return;
+  if(nr!==null&&nc!==null){sel=null;let a={r,c},b={r:nr,c:nc};if(!adjacent(a,b))return;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swipe.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old)sound("level");update();busy=false;return;
+  }
+  if(!sel){sel={r,c};render();return}let a=sel,b={r,c};if(!adjacent(a,b)){sel=b;render();return}sel=null;busy=true;[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];render();await sleep(70);let m=find();if(!m.size){[B[a.r][a.c],B[b.r][b.c]]=[B[b.r][b.c],B[a.r][a.c]];combo=1;$("msg").textContent="No match — try another swap.";render();busy=false;return}while(m.size){cleared+=m.size;if(m.size>=5)big=1;let bonus=(m.size>=5?75:0)+(combo>=4?50:0);let gain=m.size*10*Math.max(1,combo)+bonus;score+=gain;combo++;sound("match");$("msg").textContent=`Infestation cleared! +${gain}`;showScore(gain);m.forEach(k=>{let [rr,cc]=k.split(",").map(Number);B[rr][cc]=""});render();await sleep(140);drop();render();await sleep(70);m=find()}let old=level;level=Math.min(10,1+Math.floor(score/750));if(level>old)sound("level");update();busy=false}
 function showScore(points){
  const el=document.createElement("div");el.className="floatScore";el.textContent="+"+points;
  document.body.appendChild(el);el.style.left="50%";el.style.top="44%";setTimeout(()=>el.remove(),800);
 }
-function start(){let n=$("name").value.trim();if(!n){$("msg").textContent="Please enter your name first.";return}clearInterval(timer);dailyMode=false;score=0;level=1;combo=1;time=60;running=true;busy=false;sel=null;cleared=0;big=0;powers={spray:2,fog:1,sweep:1};make();sound("start");update();$("msg").textContent="GO! Clear the infestation!";timer=setInterval(()=>{if(!running)return;if(time<=0){time=0;update();end();return}time=Math.max(0,time-1);update();if(time<=0)end()},1000)}
+function confirmPlayerName(){let n=$("startName").value.trim();if(!n){$("nameStartStatus").textContent="Please enter your name.";return}$("name").value=n;$("playerDisplay").textContent=n;$("nameStartStatus").textContent="";$("nameModal").classList.remove("show");start()}
+function changePlayerName(){$("startName").value=$("name").value||"";$("nameStartStatus").textContent="";$("nameModal").classList.add("show");setTimeout(()=>$("startName").focus(),100)}
+function start(){let n=$("name").value.trim();if(!n){$("nameModal").classList.add("show");return}clearInterval(timer);dailyMode=false;score=0;level=1;combo=1;time=60;running=true;busy=false;sel=null;cleared=0;big=0;powers={spray:2,fog:1,sweep:1};make();sound("start");update();$("msg").textContent="GO! Clear the infestation!";timer=setInterval(()=>{if(!running)return;if(time<=0){time=0;update();end();return}time=Math.max(0,time-1);update();if(time<=0)end()},1000)}
 function daily(){let n=$("name").value.trim();if(!n){$("msg").textContent="Enter your name first.";return}start();dailyMode=true;time=45;update();$("msg").textContent="DAILY CHALLENGE — 45 seconds!"}
 function useCell(r,c){if(B[r][c]){B[r][c]="";cleared++}}
 function spray(){if(!running||busy||powers.spray<1)return;powers.spray--;busy=true;let r=Math.floor(Math.random()*N),c=Math.floor(Math.random()*N);useCell(r,c);score+=25;sound("spray");$("msg").textContent="Pesticide spray hit! +25";drop();render();setTimeout(()=>{busy=false;update()},140)}
 function fog(){if(!running||busy||powers.fog<1)return;powers.fog--;busy=true;let r=Math.floor(Math.random()*N),c=Math.floor(Math.random()*N);for(let y=r-1;y<=r+1;y++)for(let x=c-1;x<=c+1;x++)if(y>=0&&y<N&&x>=0&&x<N)useCell(y,x);score+=100;sound("spray");$("msg").textContent="Fogger blast! +100";drop();render();setTimeout(()=>{busy=false;update()},140)}
 function sweep(){if(!running||busy||powers.sweep<1)return;powers.sweep--;busy=true;let r=Math.floor(Math.random()*N);for(let c=0;c<N;c++)useCell(r,c);score+=80;sound("spray");$("msg").textContent="Full-row sweep! +80";drop();render();setTimeout(()=>{busy=false;update()},140)}
 function update(){let best=(load()[0]||{score:0}).score;$("score").textContent=score;$("level").textContent=level;$("combo").textContent="x"+Math.max(1,combo);$("time").textContent=time;$("refScore").textContent=score.toLocaleString();$("refLevel").textContent=level;const safeTime=Math.max(0,Number(time)||0);$("time").textContent=safeTime;$("refTime").textContent="00:"+String(safeTime).padStart(2,"0");$("best").textContent=best;$("timer").style.width=Math.max(0,time/(dailyMode?45:60)*100)+"%";$("spray").disabled=!running||powers.spray<1;$("bomb").disabled=!running||powers.fog<1;$("sweep").disabled=!running||powers.sweep<1;$("m1").textContent=Math.min(cleared,10)+" / 10";$("m2").textContent=big+" / 1";$("m3").textContent=Math.min(level,3)+" / 3";leaders()}
-function prize(){if(score>=5000)return"🎁 15% OFF — Pest Control Treatment";if(score>=3500)return"🎁 10% OFF — Pest Control Treatment";if(score>=2500)return"🎁 5% OFF — Pest Control Treatment";return"Keep playing — no discount unlocked yet!"}
-function end(){if(!running)return;running=false;clearInterval(timer);timer=null;$("final").textContent=score+" pts";$("prize").textContent=prize();$("result").textContent=score>=1500?"PEST PATROL CHAMPION!":score>=1000?"EXCELLENT SWEEP!":"GAME OVER";$("resultText").textContent="Your score has been added to the shared leaderboard.";$("modal").classList.add("show");try{window.save($("name").value.trim(),score)}catch(e){console.warn("Could not save score:",e)}try{sound("over")}catch(e){}try{update()}catch(e){console.warn("Could not refresh leaderboard:",e)}}
+function prize(){if(score>=8500)return"🏆 VIP REWARD — Pest Control Treatment";if(score>=6500)return"🎁 15% OFF — Pest Control Treatment";if(score>=5000)return"🎁 10% OFF — Pest Control Treatment";if(score>=4000)return"🎁 5% OFF — Pest Control Treatment";return"Keep playing — no discount unlocked yet!"}
+function end(){if(!running)return;running=false;clearInterval(timer);timer=null;const p=prize();$("final").textContent=score+" pts";$("prize").textContent=p;$("result").textContent=score>=1500?"PEST PATROL CHAMPION!":score>=1000?"EXCELLENT SWEEP!":"GAME OVER";$("resultText").textContent="Your score has been added to the shared leaderboard.";const box=$("claimBox");if(box){box.style.display=score>=4000?"block":"none";$("claimStatus").textContent="";$("claimBtn").disabled=false;$("claimBtn").textContent="SUBMIT PRIZE CLAIM";$("claimName").value="";$("claimPhone").value="";$("claimEmail").value=""}$("modal").classList.add("show");try{window.save($("name").value.trim(),score)}catch(e){console.warn("Could not save score:",e)}try{sound("over")}catch(e){}try{update()}catch(e){console.warn("Could not refresh leaderboard:",e)}}
 function load(){try{return JSON.parse(localStorage.getItem(store)||"[]").sort((a,b)=>b.score-a.score).slice(0,10)}catch(e){return[]}}
 function save(name,score){let a=load();a.push({name:name||"Player",score});localStorage.setItem(store,JSON.stringify(a.sort((x,y)=>y.score-x.score).slice(0,10)))}
 function leaders(){let e=$("leaderNames");if(!e)return;let a=load();e.innerHTML=a.length?a.map(x=>`<li><b>${esc(x.name)}</b><span class="leaderScore">${Number(x.score).toLocaleString()} pts</span></li>`).join(""):"<li>No players yet — be the first!</li>"}
 function openLeaders(){leaders();$("leaderModal").classList.add("show")}
 function closeLeaders(){$("leaderModal").classList.remove("show")}
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+async function submitPrizeClaim(){
+  const name=$("claimName").value.trim(), phone=$("claimPhone").value.trim(), email=$("claimEmail").value.trim();
+  const status=$("claimStatus"), btn=$("claimBtn");
+  if(!name || !phone){status.textContent="Please enter your full name and cellphone number.";status.style.color="#b3261e";return}
+  if(!window.submitPrizeClaimToFirebase){status.textContent="Please wait a moment and try again.";status.style.color="#b3261e";return}
+  btn.disabled=true; status.textContent="Submitting..."; status.style.color="#456";
+  try{await window.submitPrizeClaimToFirebase({name,phone,email,score,prize:prize()});status.textContent="✅ Details received. We will contact you about your prize.";status.style.color="#2d6a3d";btn.textContent="CLAIM SUBMITTED";}catch(e){console.warn(e);status.textContent="We could not submit your details. Please try again.";status.style.color="#b3261e";btn.disabled=false;}
+}
 function closeModal(){$("modal").classList.remove("show")}
-function how(){alert("HOW TO PLAY\\n\\n• Enter your name and start.\\n• Swap adjacent pests to match 3 or more.\\n• Bigger matches and combos score more.\\n• Use Pesticide Spray, Fogger and Sweep power-ups.\\n• Reach higher scores to unlock example discount rewards.\\n• Daily Challenge gives you 45 seconds to set a high score.\\n\\nSound effects start after you interact with the game.")}
+function how(){alert("HOW TO PLAY\\n\\n• Enter your name and start.\\n• Swipe a pest up, down, left or right to swap with an adjacent pest.
+• Match 3 or more of the same pest to clear them.\\n• Bigger matches and combos score more.\\n• Use Pesticide Spray, Fogger and Sweep power-ups.\\n• Reach higher scores to unlock example discount rewards.\\n• Daily Challenge gives you 45 seconds to set a high score.\\n\\nSound effects start after you interact with the game.")}
 make();leaders();update();
+document.addEventListener("DOMContentLoaded",()=>{const i=$("startName");if(i){i.focus();i.addEventListener("keydown",e=>{if(e.key==="Enter")confirmPlayerName()})}});
 </script>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-  import { getFirestore, collection, query, orderBy, limit, onSnapshot, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getFirestore, collection, query, orderBy, limit, onSnapshot, doc, getDoc, setDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAuZegjiarbcb73yvp9m15uOFIj2KDMBZ0",
@@ -254,6 +278,21 @@ make();leaders();update();
       } catch (err) {
         console.warn("Could not save shared score:", err);
       }
+    };
+
+    window.submitPrizeClaimToFirebase = async function(claim){
+      if(!firebaseReady || !firebaseUser) throw new Error("Firebase not ready");
+      const clean={
+        uid: firebaseUser.uid,
+        name: String(claim.name||"").trim().slice(0,80),
+        phone: String(claim.phone||"").trim().slice(0,30),
+        email: String(claim.email||"").trim().slice(0,120),
+        score: Math.max(0,Math.floor(Number(claim.score)||0)),
+        prize: String(claim.prize||"").slice(0,100),
+        createdAt: serverTimestamp()
+      };
+      if(clean.score < 4000) throw new Error("No prize claim available");
+      await addDoc(collection(db,"prizeClaims"),clean);
     };
 
     window.leaders = function(){
