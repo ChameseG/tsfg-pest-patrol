@@ -195,7 +195,7 @@ async function submitPrizeClaim(){
 }
 function closeModal(){$("modal").classList.remove("show")}
 function how(){alert(`HOW TO PLAY\n\n• Enter your name and start.\n• Swipe a pest up, down, left or right to swap with an adjacent pest.\n• Match 3 or more of the same pest to clear them.\n• Bigger matches and combos score more.\n• Use Pesticide Spray, Fogger and Sweep power-ups.\n• Reach higher scores to unlock example discount rewards.\n• Daily Challenge gives you 45 seconds to set a high score.\n\nSound effects start after you interact with the game.`)}
-make();leaders();update();
+make();if(window.leaders)window.leaders();update();
 document.addEventListener("DOMContentLoaded",()=>{const i=$("startName");if(i){i.focus();i.addEventListener("keydown",e=>{if(e.key==="Enter")confirmPlayerName()})}});
 </script>
 
