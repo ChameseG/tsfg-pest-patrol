@@ -175,5 +175,109 @@ function closeModal(){$("modal").classList.remove("show")}
 function how(){alert("HOW TO PLAY\\n\\n• Enter your name and start.\\n• Swap adjacent pests to match 3 or more.\\n• Bigger matches and combos score more.\\n• Use Pesticide Spray, Fogger and Sweep power-ups.\\n• Reach higher scores to unlock example discount rewards.\\n• Daily Challenge gives you 45 seconds to set a high score.\\n\\nSound effects start after you interact with the game.")}
 make();leaders();update();
 </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import { getFirestore, collection, query, orderBy, limit, onSnapshot, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAuZegjiarbcb73yvp9m15uOFIj2KDMBZ0",
+    authDomain: "tsfg-pest-patrol.firebaseapp.com",
+    projectId: "tsfg-pest-patrol",
+    storageBucket: "tsfg-pest-patrol.firebasestorage.app",
+    messagingSenderId: "7229701437",
+    appId: "1:7229701437:web:491638d4c9a7ae30b35954"
+  };
+
+  let sharedLeaders = [];
+  let firebaseUser = null;
+  let firebaseReady = false;
+
+  try {
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      firebaseUser = user || null;
+      if (!user) return;
+      firebaseReady = true;
+      try {
+        const q = query(collection(db, "leaderboard"), orderBy("score", "desc"), limit(10));
+        onSnapshot(q, (snap) => {
+          sharedLeaders = snap.docs.map(d => ({
+            name: String(d.data().name || "Player"),
+            score: Number(d.data().score || 0)
+          }));
+          sharedLeaders.sort((a,b) => b.score - a.score);
+          sharedLeaders = sharedLeaders.slice(0, 10);
+          if (typeof window.leaders === "function") window.leaders();
+        }, (err) => {
+          console.warn("Leaderboard listener error:", err);
+        });
+      } catch (err) {
+        console.warn("Leaderboard setup error:", err);
+      }
+    });
+
+    signInAnonymously(auth).catch(err => {
+      console.warn("Anonymous sign-in failed:", err);
+      firebaseReady = false;
+    });
+
+    // Replace the old local-only leaderboard with the shared Firestore leaderboard.
+    window.load = function(){
+      return sharedLeaders.slice().sort((a,b) => b.score - a.score).slice(0,10);
+    };
+
+    window.save = async function(name, score){
+      const cleanName = String(name || "Player").trim().slice(0,20) || "Player";
+      const cleanScore = Math.max(0, Math.floor(Number(score) || 0));
+
+      if (!firebaseReady || !firebaseUser) {
+        try {
+          let a = JSON.parse(localStorage.getItem("tsfgPestScores") || "[]");
+          a.push({name: cleanName, score: cleanScore});
+          localStorage.setItem("tsfgPestScores", JSON.stringify(a.sort((x,y)=>y.score-x.score).slice(0,10)));
+        } catch(e) {}
+        return;
+      }
+
+      try {
+        const ref = doc(db, "leaderboard", firebaseUser.uid);
+        const existing = await getDoc(ref);
+        const oldScore = existing.exists() ? Number(existing.data().score || 0) : -1;
+        if (cleanScore >= oldScore) {
+          await setDoc(ref, { name: cleanName, score: cleanScore });
+        }
+      } catch (err) {
+        console.warn("Could not save shared score:", err);
+      }
+    };
+
+    window.leaders = function(){
+      const e = document.getElementById("leaderNames");
+      if(!e) return;
+      const a = window.load();
+      e.innerHTML = a.length
+        ? a.map(x => `<li><b>${window.esc ? window.esc(x.name) : String(x.name)}</b><span class="leaderScore">${Number(x.score).toLocaleString()} pts</span></li>`).join("")
+        : "<li>No players yet — be the first!</li>";
+    };
+
+    // Update the result message to reflect the shared leaderboard.
+    const originalEnd = window.end;
+    window.end = function(){
+      if (!window.running) return;
+      originalEnd();
+      const el = document.getElementById("resultText");
+      if (el) el.textContent = "Your score has been added to the shared leaderboard.";
+    };
+
+  } catch (err) {
+    console.warn("Firebase initialization failed:", err);
+  }
+</script>
+
 </body>
 </html>
