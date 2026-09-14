@@ -268,7 +268,6 @@ make();leaders();update();
     // Update the result message to reflect the shared leaderboard.
     const originalEnd = window.end;
     window.end = function(){
-      if (!window.running) return;
       originalEnd();
       const el = document.getElementById("resultText");
       if (el) el.textContent = "Your score has been added to the shared leaderboard.";
