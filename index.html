@@ -164,7 +164,7 @@ function fog(){if(!running||busy||powers.fog<1)return;powers.fog--;busy=true;let
 function sweep(){if(!running||busy||powers.sweep<1)return;powers.sweep--;busy=true;let r=Math.floor(Math.random()*N);for(let c=0;c<N;c++)useCell(r,c);score+=80;sound("spray");$("msg").textContent="Full-row sweep! +80";drop();render();setTimeout(()=>{busy=false;update()},140)}
 function update(){let best=(load()[0]||{score:0}).score;$("score").textContent=score;$("level").textContent=level;$("combo").textContent="x"+Math.max(1,combo);$("time").textContent=time;$("refScore").textContent=score.toLocaleString();$("refLevel").textContent=level;const safeTime=Math.max(0,Number(time)||0);$("time").textContent=safeTime;$("refTime").textContent="00:"+String(safeTime).padStart(2,"0");$("best").textContent=best;$("timer").style.width=Math.max(0,time/(dailyMode?45:60)*100)+"%";$("spray").disabled=!running||powers.spray<1;$("bomb").disabled=!running||powers.fog<1;$("sweep").disabled=!running||powers.sweep<1;$("m1").textContent=Math.min(cleared,10)+" / 10";$("m2").textContent=big+" / 1";$("m3").textContent=Math.min(level,3)+" / 3";leaders()}
 function prize(){if(score>=5000)return"🎁 15% OFF — Pest Control Treatment";if(score>=3500)return"🎁 10% OFF — Pest Control Treatment";if(score>=2500)return"🎁 5% OFF — Pest Control Treatment";return"Keep playing — no discount unlocked yet!"}
-function end(){running=false;clearInterval(timer);sound("over");save($("name").value.trim(),score);update();$("final").textContent=score+" pts";$("prize").textContent=prize();$("result").textContent=score>=1500?"PEST PATROL CHAMPION!":score>=1000?"EXCELLENT SWEEP!":"GAME OVER";$("resultText").textContent="Your score has been added to this device's leaderboard.";$("modal").classList.add("show")}
+function end(){if(!running)return;running=false;clearInterval(timer);timer=null;$("final").textContent=score+" pts";$("prize").textContent=prize();$("result").textContent=score>=1500?"PEST PATROL CHAMPION!":score>=1000?"EXCELLENT SWEEP!":"GAME OVER";$("resultText").textContent="Your score has been added to the shared leaderboard.";$("modal").classList.add("show");try{window.save($("name").value.trim(),score)}catch(e){console.warn("Could not save score:",e)}try{sound("over")}catch(e){}try{update()}catch(e){console.warn("Could not refresh leaderboard:",e)}}
 function load(){try{return JSON.parse(localStorage.getItem(store)||"[]").sort((a,b)=>b.score-a.score).slice(0,10)}catch(e){return[]}}
 function save(name,score){let a=load();a.push({name:name||"Player",score});localStorage.setItem(store,JSON.stringify(a.sort((x,y)=>y.score-x.score).slice(0,10)))}
 function leaders(){let e=$("leaderNames");if(!e)return;let a=load();e.innerHTML=a.length?a.map(x=>`<li><b>${esc(x.name)}</b><span class="leaderScore">${Number(x.score).toLocaleString()} pts</span></li>`).join(""):"<li>No players yet — be the first!</li>"}
@@ -263,14 +263,6 @@ make();leaders();update();
       e.innerHTML = a.length
         ? a.map(x => `<li><b>${window.esc ? window.esc(x.name) : String(x.name)}</b><span class="leaderScore">${Number(x.score).toLocaleString()} pts</span></li>`).join("")
         : "<li>No players yet — be the first!</li>";
-    };
-
-    // Update the result message to reflect the shared leaderboard.
-    const originalEnd = window.end;
-    window.end = function(){
-      originalEnd();
-      const el = document.getElementById("resultText");
-      if (el) el.textContent = "Your score has been added to the shared leaderboard.";
     };
 
   } catch (err) {
