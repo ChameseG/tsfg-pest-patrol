@@ -138,7 +138,8 @@ const pestImg={
 };
 function svg(type){
 const e={roach:"🪳",ant:"🐜",mosquito:"🦟",spider:"🕷️",fly:"🪰",mouse:"🐭"};
-return `<span class="pestEmoji">${e[type]}</span>`;
+if(!type)return "";
+return `<span class="pestEmoji">${e[type] || "🐜"}</span>`;
 }
 function powerSVG(kind){
 return kind==="spray"?`<span class="powerEmoji">🧴</span>`:
